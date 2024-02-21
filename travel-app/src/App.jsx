@@ -1,7 +1,8 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import staticTrips from "./data/trips";
-
+import TripCard from "./components/TripCard/TripCard";
+import AddTripCard from "./components/AddTripCard/AddTripCard";
 const API_URL = import.meta.env.VITE_WEATHER_API_URL;
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -38,15 +39,37 @@ function App() {
   return (
     <div className="container">
       <div className="page-grid">
-        <h1>
-          Weather <b>Forecast</b>
-        </h1>
-        <input
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="input"
-          placeholder="Search your trip"
-        />
+        <div className="page-grid__left">
+          <h1>
+            Weather <b>Forecast</b>
+          </h1>
+          <input
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="input"
+            placeholder="Search your trip"
+          />
+          <div className="trip-grid">
+            {trips
+              .filter((item) =>
+                item.title.toLowerCase().includes(searchQuery.toLowerCase())
+              )
+              .map((trip, index) => (
+                <TripCard
+                  onClick={() => setSelectedTrip(trip)}
+                  key={index}
+                  image={trip.image}
+                  title={trip.title}
+                  startDate={trip.startDate}
+                  endDate={trip.endDate}
+                  isActive={
+                    JSON.stringify(trip) === JSON.stringify(selectedTrip)
+                  }
+                />
+              ))}
+            <AddTripCard />
+          </div>
+        </div>
       </div>
     </div>
   );

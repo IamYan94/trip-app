@@ -14,3 +14,15 @@
   padding: 15px 20px;
   border: none;
 }
+.trip-grid {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.trip-grid .trip-card,
+.trip-grid .add-trip {
+  width: calc(25% - 30px);
+}

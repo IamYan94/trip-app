@@ -1,0 +1,23 @@
+.trip-card {
+  cursor: pointer;
+  border: 1px solid lavender;
+}
+
+.trip-card.active {
+  border-color: blue;
+}
+
+.trip-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.trip-card__info {
+  padding: 10px 20px;
+}
+
+.trip-card__dates {
+  color: grey;
+  font-size: 14px;
+}
