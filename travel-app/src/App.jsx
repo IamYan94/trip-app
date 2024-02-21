@@ -69,6 +69,22 @@ function App() {
               ))}
             <AddTripCard />
           </div>
+          {selectedTrip && (
+            <>
+              <h2>Weather forecast for {selectedTrip.title} trip</h2>
+              <div className="weather-forecast-grid">
+                {weatherForecast.map((day, index) => (
+                  <WeatherCard
+                    key={index}
+                    datetime={day.datetime}
+                    tempMin={day.tempmin}
+                    tempMax={day.tempmax}
+                    icon={day.icon}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

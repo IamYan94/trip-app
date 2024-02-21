@@ -26,3 +26,16 @@
 .trip-grid .add-trip {
   width: calc(25% - 30px);
 }
+.weather-forecast-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.weather-forecast-grid .weather-card {
+  width: 100px;
+}
+
+.page-grid {
+  display: flex;
+}
