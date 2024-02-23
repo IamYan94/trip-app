@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from "react";
 import "./App.css";
-import { useEffect, useState } from "react";
 import staticTrips from "./data/trips";
 import TripCard from "./components/TripCard/TripCard";
 import AddTripCard from "./components/AddTripCard/AddTripCard";
@@ -12,9 +12,10 @@ const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [trips, setTrips] = useState(staticTrips);
-  const [selectedTrip, setSelectedTrip] = useState();
+  const [selectedTrip, setSelectedTrip] = useState(null);
   const [weatherForecast, setWeatherForecast] = useState([]);
   const [currentWeather, setCurrentWeather] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const fetchWeatherForecast = async (city, startDate, endDate) => {
     try {
@@ -38,6 +39,11 @@ function App() {
     } catch (error) {
       console.error("Error fetching current weather:", error);
     }
+  };
+
+  const createTrip = (newTrip) => {
+    setTrips([...trips, newTrip]);
+    setSelectedTrip(newTrip);
   };
 
   useEffect(() => {
@@ -82,7 +88,13 @@ function App() {
                   }
                 />
               ))}
-            <AddTripCard />
+            <AddTripCard
+              trips={trips}
+              onCreateTrip={createTrip}
+              modalOpen={modalOpen}
+              setModalOpen={setModalOpen}
+              cities={staticTrips}
+            />
           </div>
           {selectedTrip && (
             <>
